@@ -32,18 +32,22 @@ def read_input(filename: str):
     # Returns
     return column_1, column_2
 
-def remove_comprehensions(list_1, list_2, item):
-    # using list comprehension to perform the task
-    list_1 = [i for i in list_1 if i != item]
-    list_2 = [i for i in list_2 if i != item]
-    return list_1, list_2
+# def remove_comprehensions(list_1, list_2, item):
+#     # using list comprehension to perform the task
+#     list_1 = [i for i in list_1 if i != item]
+#     list_2 = [i for i in list_2 if i != item]
+#     return list_1, list_2
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+
     # Read and close file
     locations = read_input("input.txt")
-    locations_1 = locations[0]
-    locations_2 = locations[1]
+
+    # ---------- TASK 1 ---------
+    # Get columns separately, copy so it tays in "locations"
+    locations_1 = locations[0].copy()
+    locations_2 = locations[1].copy()
     # Initialize dist
     dist_out = 0
     # Run until the list is not empty
@@ -54,15 +58,16 @@ if __name__ == '__main__':
 
     print("The final distance between the historically significant locations onj the lists in the Chief's office is " + str(dist_out) + ".")
 
-    locations = read_input("input.txt")
+    # ---------- TASK 2 ----------
+    # Get columns separately
     locations_1 = locations[0]
     locations_2 = locations[1]
     # Initialize similarity score
     sim_score = 0
-    while len(locations_1) > 0:
-        item = locations_1[0]
-        sim_item = locations_1.count(item)*locations_2.count(item)
+    # Get number from right list
+    for i, item in enumerate(locations_1):
+        sim_item = item*locations_2.count(item)
+        # Count similarity score from assign
         sim_score = sim_score + sim_item
-        locations_1, locations_2 = remove_comprehensions(locations_1, locations_2, item)
-print("The final similarity score between historically significant locations on the lists in the Chief's office is " + str(dist_out) + ".")
 
+    print("The final similarity score between historically significant locations on the lists in the Chief's office is " + str(sim_score) + ".")

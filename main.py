@@ -47,5 +47,4 @@ if __name__ == '__main__':
         column_1 = result[0]
         column_2 = result[1]
 
-
-
+print("The final distance between the historically significant locations in the Chief's office is " + str(dist_out) + ".")

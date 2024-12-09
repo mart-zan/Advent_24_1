@@ -32,6 +32,12 @@ def read_input(filename: str):
     # Returns
     return column_1, column_2
 
+def remove_comprehensions(list_1, list_2, item):
+    # using list comprehension to perform the task
+    list_1 = [i for i in list_1 if i != item]
+    list_2 = [i for i in list_1 if i != item]
+    return list_1, list_2
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # Read and close file
@@ -40,16 +46,20 @@ if __name__ == '__main__':
     locations_2 = locations[1]
     # Initialize dist
     dist_out = 0
-    # print(len(column_1)>0)
     # Run until the list is not empty
     while len(locations_1) > 0:
         result = find_and_remove_min(locations_1, locations_2)
-        # print("d: " + str(dist_out))
-        # print(result)
         # Compute the distance
         dist_out = dist_out + result[2]
         # Get new values without min
         locations_1 = result[0]
         locations_2 = result[1]
 
-print("The final distance between the historically significant locations in the Chief's office is " + str(dist_out) + ".")
+    print("The final distance between the historically significant locations in the Chief's office is " + str(dist_out) + ".")
+
+    locations = read_input("input.txt")
+    locations_1 = locations[0]
+    locations_2 = locations[1]
+    # Initialize similarity score
+    sim_score = 0
+

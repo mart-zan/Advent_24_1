@@ -15,11 +15,8 @@ def find_and_remove_min(list_1, list_2):
     # Returns
     return list_1, list_2, dist
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    # Read and close file
-    my_file = open("input.txt", "r")
+def read_input(filename: str):
+    my_file = open(filename, "r")
     data = my_file.read()
     rows = data.strip().split('\n') # Split text into each row
     # Initialize
@@ -32,18 +29,27 @@ if __name__ == '__main__':
             column_1.append(int(values[0]))  # Add to column 1
             column_2.append(int(values[1]))  # Add to column 2
     my_file.close()
+    # Returns
+    return column_1, column_2
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    # Read and close file
+    locations = read_input("input.txt")
+    locations_1 = locations[0]
+    locations_2 = locations[1]
     # Initialize dist
     dist_out = 0
     # print(len(column_1)>0)
     # Run until the list is not empty
-    while len(column_1) > 0:
-        result = find_and_remove_min(column_1, column_2)
+    while len(locations_1) > 0:
+        result = find_and_remove_min(locations_1, locations_2)
         # print("d: " + str(dist_out))
         # print(result)
         # Compute the distance
         dist_out = dist_out + result[2]
         # Get new values without min
-        column_1 = result[0]
-        column_2 = result[1]
+        locations_1 = result[0]
+        locations_2 = result[1]
 
 print("The final distance between the historically significant locations in the Chief's office is " + str(dist_out) + ".")

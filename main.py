@@ -3,7 +3,6 @@ import numpy as np
 # Advent of Code 2024
 # --- Day 1: Historian Hysteria ---
 
-
 def find_and_remove_min(list_1, list_2):
     # Find minimum number
     min_column_1 = np.min(list_1)
